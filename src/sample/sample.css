@@ -1,0 +1,75 @@
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+    -fx-background-color: transparent;
+    -fx-content-display: none;
+}
+
+.split-pane {
+    -fx-background-insets: 0, 0;
+    -fx-padding: 0;
+}
+
+.nav-button {
+    -fx-background-radius: 0;
+    -fx-background-color: #525252;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+.chart-series-line {
+    -fx-stroke: #ca3e47;
+}
+
+.chart-line-symbol {
+    -fx-background-color: #313131, white;
+}
+ /*
+.chart {
+    -fx-background-color: #525252;
+}*/
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: transparent;
+}
+
+.dropdown-button {
+    -fx-background-color: #525252;
+    -fx-background-radius: 0;
+    -fx-mark-color: #ca3e47;
+}
+
+.choice-box .context-menu {
+   -fx-background-color: #313131;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #ca3e47;
+}
+
+.choice-box .menu-item > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box > .label {
+    -fx-text-fill: white;
+}
+
+.add-button:hover {
+    -fx-background-color: #ca3e47;
+}
+
+.amount-input {
+    -fx-text-fill: white;
+}
