@@ -8,4 +8,8 @@ public class Crypto {
         this.symbol = symbol;
         this.amount = amount;
     }
+
+    void addAmount(float amount) {
+        this.amount += amount;
+    }
 }

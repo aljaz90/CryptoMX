@@ -3,6 +3,7 @@ package sample;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
@@ -11,10 +12,10 @@ import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import javax.swing.text.html.ListView;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PortfolioController {
 
@@ -39,20 +40,32 @@ public class PortfolioController {
 
     private int numberOfPortfolios = 0;
     private JSONArray cryptoData;
-    private ArrayList<Double> priceList = new ArrayList();
+    private List<Portfolio> portfolios = new ArrayList();
+    private int selectedPortfolio;
 
     @FXML
     public void initialize() {
         portfolioSelector.getItems().add("Portfolio 1");
+        portfolios.add(new Portfolio());
         numberOfPortfolios++;
         cryptoData = CryptoData.getInstance().getCryptoData();
         portfolioSelector.getSelectionModel().selectFirst();
 
+        portfolioSelector.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                updateView();
+            }
+        });
+
+        System.out.println(cryptoData.length());
+
         for (int i = 0; i<cryptoData.length(); i++) {
             try {
-                cryptoSelector.getItems().add(cryptoData.getJSONObject(i).getString("Symbol"));
+                System.out.println(cryptoData.getJSONObject(i).getString("symbol"));
+                cryptoSelector.getItems().add(cryptoData.getJSONObject(i).getString("symbol"));
             } catch (JSONException exception) {
-
+                System.out.println("EXCEPTION: " + exception);
             }
         }
         cryptoSelector.getSelectionModel().selectFirst();
@@ -105,7 +118,32 @@ public class PortfolioController {
     @FXML void handleAddPortfolio(Event event) {
         portfolioSelector.getItems().add("Portfolio " + (numberOfPortfolios+1));
         numberOfPortfolios++;
+        portfolios.add(new Portfolio());
         portfolioSelector.getSelectionModel().selectLast();
+        updateView();
+    }
+
+    @FXML void handleAddCrypto(Event event) {
+        if (amountInput.getText().isBlank()) return;
+
+        String symbol = cryptoSelector.getSelectionModel().getSelectedItem().toString();
+        float amount = Float.parseFloat(amountInput.getText());
+        getSelectedPortfolio().addCrypto(new Crypto(symbol, amount));
+        amountInput.clear();
+        updateView();
+    }
+
+    Portfolio getSelectedPortfolio() {
+        return portfolios.get(portfolioSelector.getSelectionModel().getSelectedIndex());
+    }
+
+    void updateView() {
+        priceLabel.setText("USD " + getSelectedPortfolio().getPrice());
+        listView.getItems().clear();
+        Portfolio portfolio = getSelectedPortfolio();
+        portfolio.getCryptos().forEach(crypto -> {
+            listView.getItems().add(crypto.symbol + " : " + crypto.amount);
+        });
     }
 
     public static double round(double value, int places) {

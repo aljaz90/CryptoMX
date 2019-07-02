@@ -9,8 +9,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="splitPane1" dividerPositions="0.25" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="376.0" prefWidth="600.0" style="-fx-background-color: #525252;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PortfolioController">
+<SplitPane fx:id="splitPane1" dividerPositions="0.25" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="376.0" prefWidth="600.0" style="-fx-background-color: #414141;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PortfolioController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: ca3e47;">
          <children>
@@ -113,10 +113,9 @@
                         <ChoiceBox fx:id="portfolioSelector" maxHeight="1.7976931348623157E308" prefWidth="150.0" styleClass="dropdown-button" />
                      </children>
                   </HBox>
-                  <Spinner maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <ChoiceBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="dropdown-button" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
-                  <LineChart GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="3" GridPane.rowSpan="4">
+                  <ChoiceBox fx:id="cryptoSelector" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="125.0" styleClass="dropdown-button" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <ListView fx:id="listView" prefHeight="76.0" prefWidth="223.0" style="-fx-background-color: #414141;" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="5" />
+                  <LineChart fx:id="priceChart" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="3" GridPane.rowSpan="4">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -124,6 +123,16 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </LineChart>
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="45.0" mnemonicParsing="false" onAction="#handleAddCrypto" prefWidth="37.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Raleway Light" size="12.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="nav-button" />
+                        <String fx:value="add-button" />
+                     </styleClass>
+                  </Button>
+                  <TextField fx:id="amountInput" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="68.0" promptText="Amount" style="-fx-background-radius: 0; -fx-background-color: #525252;" styleClass="amount-input" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children></AnchorPane>

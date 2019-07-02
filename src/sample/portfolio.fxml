@@ -123,7 +123,7 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </LineChart>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="45.0" mnemonicParsing="false" onAction="#handleAddPortfolio" prefWidth="37.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="45.0" mnemonicParsing="false" onAction="#handleAddCrypto" prefWidth="37.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
                         <Font name="Raleway Light" size="12.0" />
                      </font>

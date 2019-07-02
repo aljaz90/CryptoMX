@@ -17,6 +17,12 @@ public class Portfolio {
     }
 
     public void addCrypto(Crypto crypto) {
+        for (int i = 0; i<cryptos.size(); i++) {
+            if (cryptos.get(i).symbol == crypto.symbol) {
+                cryptos.get(i).addAmount(crypto.amount);
+                return;
+            }
+        }
         this.cryptos.add(crypto);
     }
 

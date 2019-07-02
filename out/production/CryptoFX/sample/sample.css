@@ -69,3 +69,7 @@
 .add-button:hover {
     -fx-background-color: #ca3e47;
 }
+
+.amount-input {
+    -fx-text-fill: white;
+}
