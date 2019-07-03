@@ -23,10 +23,6 @@
 .chart-line-symbol {
     -fx-background-color: #313131, white;
 }
- /*
-.chart {
-    -fx-background-color: #525252;
-}*/
 
 .chart-plot-background {
     -fx-background-color: transparent;

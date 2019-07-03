@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.json.JSONArray;
@@ -42,6 +43,7 @@ public class PortfolioController {
     private JSONArray cryptoData;
     private List<Portfolio> portfolios = new ArrayList();
     private int selectedPortfolio;
+    private XYChart.Series series = new XYChart.Series();
 
     @FXML
     public void initialize() {
@@ -50,10 +52,12 @@ public class PortfolioController {
         numberOfPortfolios++;
         cryptoData = CryptoData.getInstance().getCryptoData();
         portfolioSelector.getSelectionModel().selectFirst();
+        priceChart.getData().add(series);
 
         portfolioSelector.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                series.getData().clear();
                 updateView();
             }
         });
@@ -139,6 +143,7 @@ public class PortfolioController {
 
     void updateView() {
         priceLabel.setText("USD " + getSelectedPortfolio().getPrice());
+        series.getData().add(getSelectedPortfolio().getPrice());
         listView.getItems().clear();
         Portfolio portfolio = getSelectedPortfolio();
         portfolio.getCryptos().forEach(crypto -> {
