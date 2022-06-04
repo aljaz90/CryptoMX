@@ -4,7 +4,7 @@
 
 ## Requirements
 
-* Java SE Development Kit 8 Downloads
+* Java SE Development Kit 8
 
 ## Features
 
